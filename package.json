@@ -1,0 +1,22 @@
+{
+  "name": "lindenbach.ca",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarcLindenbach/lindenbach.ca.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarcLindenbach/lindenbach.ca/issues"
+  },
+  "homepage": "https://github.com/MarcLindenbach/lindenbach.ca#readme",
+  "devDependencies": {
+    "fs-extra": "^10.0.0"
+  }
+}
