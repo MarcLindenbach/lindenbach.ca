@@ -1,61 +1,28 @@
 {
   "html": [
     {
-      "template": "base.html",
       "out": "index.html",
       "substitutions": {
         "content": "<div></div>"
       }
     },
     {
-      "template": "base.html",
       "out": "about.html",
       "substitutions": {
         "content": "./about.html"
       }
-    },
-    {
-      "template": "base.html",
-      "out": "rain/index.html",
-      "substitutions": {
-        "content": "./rain/index.html"
-      }
-    },
-    {
-      "template": "base.html",
-      "out": "rain/bball.html",
-      "substitutions": {
-        "content": "<a href=\"/rain/index.html\" class=\"image-full bball\"></a>"
-      }
-    },
-    {
-      "template": "base.html",
-      "out": "rain/benches.html",
-      "substitutions": {
-        "content": "<a href=\"/rain/index.html\" class=\"image-full benches\"></a>"
-      }
-    },
-    {
-      "template": "base.html",
-      "out": "rain/beach.html",
-      "substitutions": {
-        "content": "<a href=\"/rain/index.html\" class=\"image-full beach\"></a>"
-      }
-    },
-    {
-      "template": "base.html",
-      "out": "rain/boat.html",
-      "substitutions": {
-        "content": "<a href=\"/rain/index.html\" class=\"image-full boat\"></a>"
-      }
     }
   ],
-  "copy": [
-    "assets/*",
-    "rain/assets/*"
-  ],
-  "dirs": [
-    "assets/",
-    "rain/assets/"
+  "galleries": [
+    {
+      "name": "Rain",
+      "template": "1p3l.html",
+      "images": [
+        { "name": "BBall", "image": "bball.jpg" },
+        { "name": "Benches", "image": "benches.jpg" },
+        { "name": "Boat", "image": "boat.jpg" },
+        { "name": "Beach", "image": "beach.jpg" }
+      ]
+    }
   ]
 }

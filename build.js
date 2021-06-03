@@ -1,36 +1,58 @@
 const fs = require('fs-extra');
-const assert = require('assert');
 const sitemap = require('./src/sitemap.json');
 
-const { dirs, copy, html } = sitemap;
+const { dirs, copy, html, galleries } = sitemap;
 
 fs.emptyDirSync('./dist');
+fs.copySync('./src/assets/', './dist/assets/');
 
-dirs.forEach((item) => {
-  const dir = `./dist/${item.replace('*', '')}`;
-  fs.emptyDirSync(dir);
-});
+const gallerySubstitution = galleries.map(({ name }) => `
+  <li><a href="/${name.toLowerCase()}/">${name}</a></li>
+`).join('');
 
-copy.forEach((item) => {
-  if (item.endsWith('*')) {
-    const fromDir = `./src/${item.replace('*', '')}`;
-    const toDir = `./dist/${item.replace('*', '')}`;
-    fs.copySync(fromDir, toDir);
-  }
-});
-
+const baseHTML = fs.readFileSync('./src/base.html').toString();
 html.forEach((item) => {
-  assert(item.template, 'Template missing');
-  assert(item.template, 'Out missing');
-  let contents = fs.readFileSync(`./src/${item.template}`).toString();
+  let contents = baseHTML;
   const regexpSubs = /{{(.*)}}/ig;
   contents.match(regexpSubs).forEach((subExpr) => {
     const subProp = subExpr.replace(/[{} ]/g, '');
-    const substitution = item.substitutions[subProp];
+    let substitution = item.substitutions[subProp];
+    if (subProp === 'galleries') {
+      substitution = gallerySubstitution;
+    }
     const subContent = substitution.startsWith('./')
-      ? fs.readFileSync(`./src/${substitution.replace('./', '')}`)
+      ? fs.readFileSync(`./src/${substitution.replace('./', '')}`).toString()
       : substitution;
     contents = contents.replace(subExpr, subContent);
   });
   fs.writeFileSync(`./dist/${item.out}`, contents);
+});
+
+galleries.forEach((gallery) => {
+  fs.emptyDirSync(`./dist/${gallery.name.toLowerCase()}`);
+  fs.copySync(
+    `./src/${gallery.name.toLowerCase()}`,
+    `./dist/${gallery.name.toLowerCase()}`,
+  );
+  let galleryHTML = baseHTML;
+  let template = fs.readFileSync(`./src/${gallery.template}`).toString();
+  galleryHTML = galleryHTML.replace('{{ content }}', template);
+  galleryHTML = galleryHTML.replace('{{ galleries }}', gallerySubstitution);
+
+  gallery.images.forEach(({ name, image }, i) => {
+    let imgHTML = baseHTML;
+    const imageElm = `
+      <a
+        href="/${gallery.name.toLowerCase()}/index.html"
+        class="image-full"
+        style="background-image: url(/${gallery.name.toLowerCase()}/${image})"
+      ></a>`;
+    imgHTML = imgHTML.replace('{{ content }}', imageElm);
+    imgHTML = imgHTML.replace('{{ galleries }}', gallerySubstitution);
+    fs.writeFileSync(`./dist/${gallery.name.toLowerCase()}/${name.toLowerCase()}.html`, imgHTML);
+
+    galleryHTML = galleryHTML.replace(`{{ image[${i}] }}`, `/${gallery.name.toLowerCase()}/${image}`);
+  });
+
+    fs.writeFileSync(`./dist/${gallery.name.toLowerCase()}/index.html`, galleryHTML);
 });

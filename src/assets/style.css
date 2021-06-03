@@ -101,7 +101,7 @@ ul.about {
 	margin-right: 32px;
 }
 
-.rain-container {
+.gallery-1p3l {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
@@ -161,18 +161,15 @@ ul.about {
   grid-row-end: 4;
 }
 
-.beach {
-  background-image: url(/rain/assets/beach.jpg);
+@media (max-width: 1024px) {
+	.me {
+		width: 205px;
+		height: 256px;
+	}
 }
 
-.boat {
-  background-image: url(/rain/assets/boat.jpg);
-}
-
-.benches {
-  background-image: url(/rain/assets/benches.jpg);
-}
-
-.bball {
-  background-image: url(/rain/assets/bball.jpg);
+@media (max-width: 576px) {
+	section.about {
+		flex-direction: column;
+	}
 }
