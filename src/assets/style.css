@@ -246,11 +246,14 @@ ul.about {
 }
 
 @media (max-width: 1024px) {
+	body {
+		padding: 16px !important;
+	}
 	.container {
 		display: grid;
 		grid-template-rows: 48px auto 1fr;
 		grid-template-columns: 1fr;
-		grid-column-gap: 16px;
+		grid-column-gap: 8px;
 		height: 100%;
 	}
 
@@ -277,7 +280,7 @@ ul.about {
 
 	nav.show {
 		display: block;
-		margin-bottom: 16px;
+		margin-bottom: 8px;
 	}
 
 	.content {
@@ -303,6 +306,13 @@ ul.about {
 	section.about ul.about-links {
 		font-size: 13px;
 		line-height: 1.5;
+	}
+
+	.gallery-1p3l,
+	.gallery-offset-columns,
+	.gallery-offset-rows {
+		grid-column-gap: 8px;
+		grid-row-gap: 8px;
 	}
 }
 
