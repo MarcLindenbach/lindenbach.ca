@@ -1,7 +1,7 @@
 const fs = require('fs-extra');
-const sitemap = require('./src/sitemap.json');
 
 const build = () => {
+  const sitemap = JSON.parse(fs.readFileSync('./src/sitemap.json'));
   const { dirs, copy, html, galleries } = sitemap;
 
   fs.emptyDirSync('./dist');
@@ -15,8 +15,7 @@ const build = () => {
     const regexpSubs = /{{(.+?)}}/ig;
     return (template.match(regexpSubs) || []).reduce((acc, subExpr) => {
       const subProp = subExpr.replace(/[{} ]/g, '');
-      console.log(subProp);
-      let substitution = substitutions[subProp];
+      let substitution = substitutions[subProp] || '';
       if (subProp === 'galleries') {
         substitution = gallerySubstitution;
       } else if (subProp === 'buster') {
@@ -44,12 +43,10 @@ const build = () => {
 
     const substitutions = {
       content: `./${gallery.template}`,
+      subtitle: gallery.name,
       ...gallery.images.reduce((acc, { name, image }, i) => {
-        const imageName = image.split('.')[0];
-
         acc[`image_${i}`] = `/${gallery.name.toLowerCase()}/${image}`;
-        acc[`link_${i}`] = `/${gallery.name.toLowerCase()}/${imageName}.html`;
-
+        acc[`link_${i}`] = `/${gallery.name.toLowerCase()}/${name.toLowerCase()}.html`;
         return acc;
       }, {}),
     };
@@ -59,14 +56,19 @@ const build = () => {
 
 
     gallery.images.forEach(({ name, image }, i) => {
+      const nextImage = gallery.images[i + 1];
+      const linkUrl = nextImage
+        ? `/${gallery.name.toLowerCase()}/${nextImage.name.toLowerCase()}.html`
+        : `/${gallery.name.toLowerCase()}/index.html`;
       const imageElm = `
         <a
-          href="/${gallery.name.toLowerCase()}/index.html"
+          href="${linkUrl}"
           class="image-full"
           style="background-image: url(/${gallery.name.toLowerCase()}/${image})"
         ></a>`;
       const substitutions = {
         content: imageElm,
+        subtitle: `${gallery.name} - ${name}`,
       };
       const imgHTML = compileTemplateWithSubs(baseHTML, substitutions);
       fs.writeFileSync(`./dist/${gallery.name.toLowerCase()}/${name.toLowerCase()}.html`, imgHTML);

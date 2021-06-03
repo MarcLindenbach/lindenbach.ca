@@ -3,12 +3,14 @@
     {
       "out": "index.html",
       "substitutions": {
+        "subtitle": "Home",
         "content": "<div></div>"
       }
     },
     {
       "out": "about.html",
       "substitutions": {
+        "subtitle": "About",
         "content": "./about.html"
       }
     }
@@ -28,10 +30,10 @@
       "name": "Powerlines",
       "template": "offset-rows.html",
       "images": [
-        { "name": "1", "image": "1.jpg" },
-        { "name": "2", "image": "2.jpg" },
-        { "name": "3", "image": "3.jpg" },
-        { "name": "4", "image": "4.jpg" }
+        { "name": "Single", "image": "1.jpg" },
+        { "name": "Train", "image": "3.jpg" },
+        { "name": "Three", "image": "2.jpg" },
+        { "name": "Trails", "image": "4.jpg" }
       ]
     }
   ]
