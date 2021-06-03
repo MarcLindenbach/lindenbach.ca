@@ -23,6 +23,16 @@
         { "name": "Boat", "image": "boat.jpg" },
         { "name": "Beach", "image": "beach.jpg" }
       ]
+    },
+    {
+      "name": "Powerlines",
+      "template": "offset-rows.html",
+      "images": [
+        { "name": "1", "image": "1.jpg" },
+        { "name": "2", "image": "2.jpg" },
+        { "name": "3", "image": "3.jpg" },
+        { "name": "4", "image": "4.jpg" }
+      ]
     }
   ]
 }

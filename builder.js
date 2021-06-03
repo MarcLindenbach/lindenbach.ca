@@ -47,6 +47,7 @@ const build = () => {
 
     gallery.images.forEach(({ name, image }, i) => {
       let imgHTML = baseHTML;
+      const imageName = image.split('.')[0];
       const imageElm = `
         <a
           href="/${gallery.name.toLowerCase()}/index.html"
@@ -58,6 +59,7 @@ const build = () => {
       fs.writeFileSync(`./dist/${gallery.name.toLowerCase()}/${name.toLowerCase()}.html`, imgHTML);
 
       galleryHTML = galleryHTML.replace(`{{ image[${i}] }}`, `/${gallery.name.toLowerCase()}/${image}`);
+      galleryHTML = galleryHTML.replace(`{{ link[${i}] }}`, `/${gallery.name.toLowerCase()}/${imageName}.html`);
     });
 
       fs.writeFileSync(`./dist/${gallery.name.toLowerCase()}/index.html`, galleryHTML);

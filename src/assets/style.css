@@ -101,16 +101,6 @@ ul.about {
 	margin-right: 32px;
 }
 
-.gallery-1p3l {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-column-gap: 16px;
-  grid-row-gap: 16px;
-	height: 100%;
-	width: 100%;
-}
-
 .image {
   background-color: #878d8f;
   background-size: cover;
@@ -133,32 +123,118 @@ ul.about {
   transition: opacity 0.2s ease-in-out;
 }
 
-.main {
+.gallery-1p3l {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+	height: 100%;
+	width: 100%;
+}
+
+.gallery-1p3l .main {
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: 4;
 }
 
-.row-1 {
+.gallery-1p3l .row-1 {
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 1;
   grid-row-end: 2;
 }
 
-.row-2 {
+.gallery-1p3l .row-2 {
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 2;
   grid-row-end: 3;
 }
 
-.row-3 {
+.gallery-1p3l .row-3 {
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 3;
   grid-row-end: 4;
+}
+
+.gallery-offset-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+	height: 100%;
+	width: 100%;
+}
+
+.gallery-offset-columns .img-1 {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 4;
+}
+
+.gallery-offset-columns .img-2 {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 4;
+  grid-row-end: 6;
+}
+
+.gallery-offset-columns .img-3 {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+
+.gallery-offset-columns .img-4 {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 6;
+}
+
+.gallery-offset-rows {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+	height: 100%;
+	width: 100%;
+}
+
+.gallery-offset-rows .img-1 {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.gallery-offset-rows .img-2 {
+  grid-column-start: 4;
+  grid-column-end: 6;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.gallery-offset-rows .img-3 {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+.gallery-offset-rows .img-4 {
+  grid-column-start: 3;
+  grid-column-end: 6;
+  grid-row-start: 2;
+  grid-row-end: 3;
 }
 
 @media (max-width: 1024px) {

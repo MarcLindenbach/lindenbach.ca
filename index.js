@@ -4,8 +4,9 @@ const http = require('http');
 const builder = require('./builder');
 
 http.createServer(function (req, res) {
-  const file = `${__dirname}/dist${req.url}`.split('?')[0];
-  console.log('GET', file);
+  const url = req.url.endsWith('/') ? `${req.url}index.html` : req.url;
+  const file = `${__dirname}/dist${url}`.split('?')[0];
+  console.log('GET', req.url, file);
   fs.readFile(file, function (err,data) {
     if (err) {
       res.writeHead(404);
