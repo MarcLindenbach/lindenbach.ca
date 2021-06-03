@@ -314,6 +314,10 @@ ul.about {
 		grid-column-gap: 8px;
 		grid-row-gap: 8px;
 	}
+
+	.me {
+		margin-right: 16px;
+	}
 }
 
 @media (max-width: 768px) {
