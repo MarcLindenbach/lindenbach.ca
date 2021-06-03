@@ -12,9 +12,10 @@ const build = () => {
   `).join('');
 
   const compileTemplateWithSubs = (template, substitutions) => {
-    const regexpSubs = /{{(.*)}}/ig;
-    return template.match(regexpSubs).reduce((acc, subExpr) => {
+    const regexpSubs = /{{(.+?)}}/ig;
+    return (template.match(regexpSubs) || []).reduce((acc, subExpr) => {
       const subProp = subExpr.replace(/[{} ]/g, '');
+      console.log(subProp);
       let substitution = substitutions[subProp];
       if (subProp === 'galleries') {
         substitution = gallerySubstitution;
@@ -22,7 +23,7 @@ const build = () => {
         substitution = Math.floor(Math.random() * 1000000).toString();
       }
       const subContent = substitution.startsWith('./')
-        ? fs.readFileSync(`./src/${substitution.replace('./', '')}`).toString()
+        ? compileTemplateWithSubs(fs.readFileSync(`./src/${substitution.replace('./', '')}`).toString(), substitutions)
         : substitution;
       return acc.replace(subExpr, subContent);
     }, template);
@@ -40,29 +41,36 @@ const build = () => {
       `./src/${gallery.name.toLowerCase()}`,
       `./dist/${gallery.name.toLowerCase()}`,
     );
-    let galleryHTML = baseHTML;
-    let galleryTemplate = fs.readFileSync(`./src/${gallery.template}`).toString();
-    galleryHTML = galleryHTML.replace('{{ content }}', galleryTemplate);
-    galleryHTML = galleryHTML.replace('{{ galleries }}', gallerySubstitution);
+
+    const substitutions = {
+      content: `./${gallery.template}`,
+      ...gallery.images.reduce((acc, { name, image }, i) => {
+        const imageName = image.split('.')[0];
+
+        acc[`image_${i}`] = `/${gallery.name.toLowerCase()}/${image}`;
+        acc[`link_${i}`] = `/${gallery.name.toLowerCase()}/${imageName}.html`;
+
+        return acc;
+      }, {}),
+    };
+
+    const galleryHTML = compileTemplateWithSubs(baseHTML, substitutions);
+    fs.writeFileSync(`./dist/${gallery.name.toLowerCase()}/index.html`, galleryHTML);
+
 
     gallery.images.forEach(({ name, image }, i) => {
-      let imgHTML = baseHTML;
-      const imageName = image.split('.')[0];
       const imageElm = `
         <a
           href="/${gallery.name.toLowerCase()}/index.html"
           class="image-full"
           style="background-image: url(/${gallery.name.toLowerCase()}/${image})"
         ></a>`;
-      imgHTML = imgHTML.replace('{{ content }}', imageElm);
-      imgHTML = imgHTML.replace('{{ galleries }}', gallerySubstitution);
+      const substitutions = {
+        content: imageElm,
+      };
+      const imgHTML = compileTemplateWithSubs(baseHTML, substitutions);
       fs.writeFileSync(`./dist/${gallery.name.toLowerCase()}/${name.toLowerCase()}.html`, imgHTML);
-
-      galleryHTML = galleryHTML.replace(`{{ image[${i}] }}`, `/${gallery.name.toLowerCase()}/${image}`);
-      galleryHTML = galleryHTML.replace(`{{ link[${i}] }}`, `/${gallery.name.toLowerCase()}/${imageName}.html`);
     });
-
-      fs.writeFileSync(`./dist/${gallery.name.toLowerCase()}/index.html`, galleryHTML);
   });
 
   console.log('Site built');
