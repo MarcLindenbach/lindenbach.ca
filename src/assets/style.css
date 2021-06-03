@@ -24,6 +24,10 @@ header {
   grid-column-end: 3;
 }
 
+header .hamburger {
+	display: none;
+}
+
 hr {
 	border-top: 1px solid #999;
 	border-bottom: none;
@@ -85,6 +89,10 @@ section.about {
 	display: flex;
 	width: 100%;
 	height: 100%;
+}
+
+section.about .about-links {
+	display: none;
 }
 
 ul.about {
@@ -238,14 +246,69 @@ ul.about {
 }
 
 @media (max-width: 1024px) {
-	.me {
-		width: 205px;
-		height: 256px;
+	.container {
+		display: grid;
+		grid-template-rows: 48px auto 1fr;
+		grid-template-columns: 1fr;
+		grid-column-gap: 16px;
+		height: 100%;
+	}
+
+	header {
+		grid-column-start: 1;
+		grid-column-end: 1;
+	}
+
+	header h1 {
+		line-height: 2;
+	}
+
+	header .hamburger {
+		display: block;
+		cursor: pointer;
+		float: right;
+		font-size: 22px;
+		line-height: 1;
+	}
+
+	nav {
+		display: none;
+	}
+
+	nav.show {
+		display: block;
+		margin-bottom: 16px;
+	}
+
+	.content {
+		grid-column-start: 1;
+		grid-column-end: 1;
+		grid-row-start: 3;
+		grid-row-end: 4;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	footer {
+		display: none;
+		float: right;
+		font-size: 22px;
+	}
+
+	section.about .about-links {
+		display: block;
+	}
+
+	section.about ul.about-links {
+		font-size: 13px;
+		line-height: 1.5;
 	}
 }
 
-@media (max-width: 576px) {
-	section.about {
-		flex-direction: column;
+@media (max-width: 768px) {
+	.me {
+		width: 273px;
+		height: 341px;
 	}
 }

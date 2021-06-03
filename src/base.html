@@ -9,11 +9,15 @@
   <body>
     <div class="container">
       <header>
-        <h1>MARC <strong>LINDENBACH</strong></h1>
+        <h1>
+          MARC <strong>LINDENBACH</strong>
+          <div class="hamburger" role="button">&#x2630;</div>
+        </h1>
         <hr />
       </header>
       <nav>
         <ul class="work">
+          <li><a href="/index.html">Home</a></li>
           {{ galleries }}
           <li><a href="/about.html">About</a></li>
         </ul>
@@ -25,10 +29,13 @@
         <ul class="links">
           <li><a href="mailto:marc@lindenbach.ca">Email</a></li>
           <li><a href="https://www.instagram.com/mwlindenbach/">Instagram</a></li>
-          <li><a href="https://github.com/marclindenbach">Github</a></li>
-          <li><a href="https://ca.linkedin.com/in/marc-lindenbach">LinkedIn</a></li>
         </ul>
       </footer>
     </div>
   </body>
+  <script>
+    document.querySelector('.hamburger').addEventListener('click', () => {
+      document.querySelector('nav').classList.toggle('show');
+    });
+  </script>
 </html>
