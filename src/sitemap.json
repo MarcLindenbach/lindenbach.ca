@@ -31,7 +31,7 @@
       "template": "offset-rows.html",
       "images": [
         { "name": "Single", "image": "1.jpg" },
-        { "name": "Sentinel", "image": "3.jpg" },
+        { "name": "Sentinel", "image": "sentinel.jpg" },
         { "name": "Three", "image": "2.jpg" },
         { "name": "Trails", "image": "4.jpg" }
       ]
