@@ -35,6 +35,15 @@
         { "name": "Three", "image": "2.jpg" },
         { "name": "Trails", "image": "4.jpg" }
       ]
+    },
+    {
+      "name": "Spring",
+      "template": "1p2l.html",
+      "images": [
+        { "name": "Amanda", "image": "amanda.jpg" },
+        { "name": "Tree", "image": "tree.jpg" },
+        { "name": "Flowers", "image": "flowers.jpg" }
+      ]
     }
   ]
 }
