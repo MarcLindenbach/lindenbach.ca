@@ -20,29 +20,29 @@
       "name": "Rain",
       "template": "1p3l.html",
       "images": [
-        { "name": "BBall", "image": "bball.jpg" },
-        { "name": "Benches", "image": "benches.jpg" },
-        { "name": "Boat", "image": "boat.jpg" },
-        { "name": "Beach", "image": "beach.jpg" }
+        { "name": "BBall", "image": "bball.jpg", "thumbnail": "bball-thumbnail.jpg" },
+        { "name": "Benches", "image": "benches.jpg", "thumbnail": "benches-thumbnail.jpg" },
+        { "name": "Boat", "image": "boat.jpg", "thumbnail": "boat-thumbnail.jpg" },
+        { "name": "Beach", "image": "beach.jpg", "thumbnail": "beach-thumbnail.jpg" }
       ]
     },
     {
       "name": "Powerlines",
       "template": "offset-rows.html",
       "images": [
-        { "name": "Single", "image": "1.jpg" },
-        { "name": "Sentinel", "image": "sentinels.jpg" },
-        { "name": "Three", "image": "2.jpg" },
-        { "name": "Trails", "image": "4.jpg" }
+        { "name": "Single", "image": "1.jpg", "thumbnail": "1-thumbnail.jpg" },
+        { "name": "Sentinel", "image": "sentinels.jpg", "thumbnail": "sentinels-thumbnail.jpg" },
+        { "name": "Three", "image": "2.jpg", "thumbnail": "2-thumbnail.jpg" },
+        { "name": "Trails", "image": "4.jpg", "thumbnail": "4-thumbnail.jpg" }
       ]
     },
     {
       "name": "Spring",
       "template": "1p2l.html",
       "images": [
-        { "name": "Amanda", "image": "a.jpg" },
-        { "name": "Tree", "image": "t.jpg" },
-        { "name": "Flowers", "image": "f.jpg" }
+        { "name": "Amanda", "image": "a.jpg", "thumbnail": "a-thumbnail.jpg" },
+        { "name": "Tree", "image": "t.jpg", "thumbnail": "t-thumbnail.jpg" },
+        { "name": "Flowers", "image": "f.jpg", "thumbnail": "f-thumbnail.jpg" }
       ]
     }
   ]

@@ -44,8 +44,8 @@ const build = () => {
     const substitutions = {
       content: `./${gallery.template}`,
       subtitle: gallery.name,
-      ...gallery.images.reduce((acc, { name, image }, i) => {
-        acc[`image_${i}`] = `/${gallery.name.toLowerCase()}/${image}`;
+      ...gallery.images.reduce((acc, { name, image, thumbnail }, i) => {
+        acc[`image_${i}`] = `/${gallery.name.toLowerCase()}/${thumbnail || image}`;
         acc[`link_${i}`] = `/${gallery.name.toLowerCase()}/${name.toLowerCase()}.html`;
         return acc;
       }, {}),
